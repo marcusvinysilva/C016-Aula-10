@@ -23,7 +23,7 @@ const findByIdPaleta = async (req, res) => {
   const paleta = await paletasService.findByIdPaleta(id);
 
   if (!paleta) {
-    return res.status(204);
+    return res.status(206).send({message: 'Paleta não encontrada com esse id!'});
   }
 
   res.send(paleta);
@@ -61,7 +61,7 @@ const updatePaleta = async (req, res) => {
   const paleta = await paletasService.findByIdPaleta(id);
 
   if (!paleta) {
-    return res.status(204);
+    return res.status(206).send({message: 'Paleta não encontrada com esse id!'});
   }
 
   if (
@@ -91,7 +91,7 @@ const deletePaleta = async (req, res) => {
   const paleta = await paletasService.findByIdPaleta(id);
 
   if (!paleta) {
-    return res.status(204);
+    return res.status(206).send({message: 'Paleta não encontrada com esse id!'});
   }
 
   await paletasService.deletePaleta(id);
