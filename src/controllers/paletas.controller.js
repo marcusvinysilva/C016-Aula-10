@@ -1,5 +1,4 @@
 const paletasService = require('../services/paletas.service');
-const mongoose = require('mongoose');
 
 const findAllPaletas = async (req, res) => {
   const allPaletas = await paletasService.findAllPaletas();
@@ -16,10 +15,6 @@ const findAllPaletas = async (req, res) => {
 const findByIdPaleta = async (req, res) => {
   const id = req.params.id;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({ message: 'ID inválido' });
-  }
-
   const paleta = await paletasService.findByIdPaleta(id);
 
   if (!paleta) {
@@ -32,19 +27,6 @@ const findByIdPaleta = async (req, res) => {
 const createPaleta = async (req, res) => {
   const paleta = req.body;
 
-  if (
-    !paleta ||
-    !paleta.sabor ||
-    !paleta.descricao ||
-    !paleta.foto ||
-    !paleta.preco
-  ) {
-    return res.status(400).send({
-      message:
-        'Você não preencheu todos os dados para adicionar uma nova paleta ao cardápio!',
-    });
-  }
-
   const newPaleta = await paletasService.createPaleta(paleta);
 
   res.status(201).send(newPaleta);
@@ -54,26 +36,10 @@ const updatePaleta = async (req, res) => {
   const id = req.params.id;
   const editPaleta = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({ message: 'ID inválido' });
-  }
-
   const paleta = await paletasService.findByIdPaleta(id);
 
   if (!paleta) {
     return res.status(206).send({message: 'Paleta não encontrada com esse id!'});
-  }
-
-  if (
-    !editPaleta ||
-    !editPaleta.sabor ||
-    !editPaleta.descricao ||
-    !editPaleta.foto ||
-    !editPaleta.preco
-  ) {
-    return res.status(400).send({
-      message: 'Você não preencheu todos os dados para editar a paleta!',
-    });
   }
 
   const updatedPaleta = await paletasService.updatePaleta(id, editPaleta);
@@ -83,11 +49,6 @@ const updatePaleta = async (req, res) => {
 
 const deletePaleta = async (req, res) => {
   const id = req.params.id;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({ message: 'ID inválido' });
-  }
-
   const paleta = await paletasService.findByIdPaleta(id);
 
   if (!paleta) {
