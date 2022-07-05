@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API El Geladon",
+    "description": "API para CRUD de paletas mexicanas",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "URL de teste"
+    }
+  ],
+  "paths": {
+    "/paletas/": {
+      "get": {
+        "summary": "Lista todas as paletas",
+        "description": "Rota responsável por listar todas as paletas",
+        "tags": ["Paletas"],
+        "responses": {
+          "206": {
+            "description": "Partial Content"
+          },
+         "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Paleta"
+                }
+              }
+            }
+          }
+         }
+        }
+      },
+      "post": {}
+    },
+    "/paletas/{id}": {
+      "get": {},
+      "put": {},
+      "delete": {}
+    }
+  },
+  "components": {
+    "schemas": {
+      "Paleta": {
+        "type": "object",
+        "properties": {
+          "sabor": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "foto": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
