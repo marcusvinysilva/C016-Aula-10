@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectToDatabase = require('./src/database/database');
 const paletasRoute = require('./src/routes/paletas.route');
 const swaggerRoute = require('./src/routes/swagger.route');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
