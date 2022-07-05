@@ -9,6 +9,10 @@
     {
       "url": "http://localhost:3000/",
       "description": "URL de teste"
+    },
+    {
+      "url": "https://api-el-geladon-marcus.herokuapp.com/",
+      "description": "URL do deploy"
     }
   ],
   "paths": {
