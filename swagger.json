@@ -111,7 +111,55 @@
         }
       },
       "put": {
-        
+        "summary": "Editar uma paleta pelo ID",
+        "description": "Rota responsável por editar uma paleta pelo ID",
+        "tags": ["Paletas"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da paleta para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Paleta"
+              },
+              "examples": {
+                "Paleta": {
+                  "value": {
+                    "sabor": "Maracujá Editado",
+                    "descricao": "Paleta de Maracujá editado",
+                    "foto": "./assets/images/maracuja-editado.png",
+                    "preco": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "ID Inválido ou Envie o todos os campos da paleta!"
+          },
+          "206": {
+            "description": "Paleta não encontrada com esse id!"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Paleta"
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {}
     }
