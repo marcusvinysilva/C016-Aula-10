@@ -19,24 +19,63 @@
         "tags": ["Paletas"],
         "responses": {
           "206": {
-            "description": "Partial Content"
+            "description": "Não existe nenhuma paleta cadastrada!"
           },
-         "200": {
-          "description": "OK",
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Paleta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar uma paleta",
+        "description": "Rota responsável por cadastrar uma paleta",
+        "tags": ["Paletas"],
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
+                "$ref": "#/components/schemas/Paleta"
+              },
+              "examples": {
+                "Paleta": {
+                  "value": {
+                    "sabor": "Maracujá",
+                    "descricao": "Paleta de Maracujá",
+                    "foto": "./assets/images/maracuja.png",
+                    "preco": 7
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Envie o todos os campos da paleta!"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
                   "$ref": "#/components/schemas/Paleta"
                 }
               }
             }
           }
-         }
         }
-      },
-      "post": {}
+      }
     },
     "/paletas/{id}": {
       "get": {},
